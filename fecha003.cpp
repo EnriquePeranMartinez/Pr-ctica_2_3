@@ -1,11 +1,6 @@
 #include<iostream>
-#include<string>
-#include<limits>
-#include<cstdio>
 
 using namespace std;
-
-int dias_meses[13] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
 class Fecha {
 	private:
