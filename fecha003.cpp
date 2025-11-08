@@ -35,7 +35,7 @@ int Fecha::get_second() { return second; }
 
 void Fecha::leer()
 { 	
-
+	
 	cin >> day;
 	cin.ignore();	// Ignorar el '/'
 	cin >> month;
