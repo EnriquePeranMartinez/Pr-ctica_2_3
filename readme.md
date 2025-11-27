@@ -1,9 +1,8 @@
 # Decisiones de diseño
 
+## Fecha.cpp (003)
 
+`fanterior = factual;` -> Esto no asigna referencia, copia los campos (que son tipos primitivos), o sea que no hay problema.
 
-## Fecha.cpp
-
-- ``` fanterior = factual; ``` -> Esto no asigna referencia, copia los campos (que son tipos primitivos), o sea que no hay problema.
-
-- Los métodos de leer y escribir quizá deberían ser bool en vez de void.
+## 004.cpp (Clase Cuac)
+Cambiamos `numero_a_frase` para que devuelva un string en vez de imprimirlo directamente.

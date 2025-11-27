@@ -37,8 +37,8 @@ const string frases[NUMERO_FRASES] = {
 	"El que quiera saber mas, que se vaya a Salamanca."
 };
 
-void numero_a_frase(int num){
-    cout << frases[num - 1] << endl;
+string numero_a_frase(int num){
+    return frases[num - 1];
 }
 
 
@@ -135,42 +135,69 @@ bool Fecha::es_igual(Fecha &otra)
 		return false;
 	}
 }
-
+	
 class Cuac {
   private:
     Fecha fecha;
     string usuario;
     string texto;
   public:
+  	Cuac();
+	// Getters
+	Fecha getFecha();
+	string getUsuario();
+	string getTexto();
+	// Funcionalidad
+	
     bool leer_mcuac();
     bool leer_pcuac();
     void escribir();
     bool es_anterior(Cuac &otro);
 };
 
+Cuac::Cuac() {  }		// constructor
+
+Fecha Cuac::getFecha() { return fecha; }
+string Cuac::getUsuario() { return usuario;}
+string Cuac::getTexto() { return texto; }
+
 bool Cuac::leer_mcuac()
 {
     cin >> usuario;     // Hay que manejar errores ya o luego??
     fecha.leer();
+	cin.ignore();		// Ignoramos el \n
     getline(cin, texto);
     if (texto.size() > 140) return false;
+	else return true;
 }
 
 bool Cuac::leer_pcuac()
 {
+	int n_mensaje;
+	cin >> usuario;     // Hay que manejar errores ya o luego??
+    fecha.leer();
+	cin.ignore();		// Ignoramos el \n
+	cin >> n_mensaje;	// Guardamos el número del mensaje
+	texto = numero_a_frase(n_mensaje);	// Lo convertimos y lo asignamos al texto
 
+	return true;
 }
+
 void Cuac::escribir()
 {
-
+	cout << usuario << " ";
+	fecha.escribir();
+	cout << endl << "   " << texto;
 }
-bool Cuac::es_anterior(Cuac &otro)
-{
 
+bool Cuac::es_anterior(Cuac &otro)		// Esto es relevante para este ejercicio ??
+{
+	return false; //if(fecha.es_menor(otro.getFecha())){}
 }
 
 
 int main(){
+	
     string comando;
     int num = 0;
 
@@ -182,7 +209,7 @@ int main(){
         cuac.escribir();
 
     }
-
+	
 
     return 0;
 }
