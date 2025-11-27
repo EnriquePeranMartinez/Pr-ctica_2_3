@@ -163,7 +163,7 @@ string Cuac::getTexto() { return texto; }
 
 bool Cuac::leer_mcuac()
 {
-    cin >> usuario;     // Hay que manejar errores ya o luego??
+    cin >> usuario;
     fecha.leer();
 	cin.ignore();		// Ignoramos el \n
     getline(cin, texto);
@@ -174,7 +174,7 @@ bool Cuac::leer_mcuac()
 bool Cuac::leer_pcuac()
 {
 	int n_mensaje;
-	cin >> usuario;     // Hay que manejar errores ya o luego??
+	cin >> usuario;
     fecha.leer();
 	cin.ignore();		// Ignoramos el \n
 	cin >> n_mensaje;	// Guardamos el número del mensaje
@@ -187,12 +187,28 @@ void Cuac::escribir()
 {
 	cout << usuario << " ";
 	fecha.escribir();
-	cout << endl << "   " << texto;
+	cout << endl << "   " << texto << endl;
 }
 
-bool Cuac::es_anterior(Cuac &otro)		// Esto es relevante para este ejercicio ??
-{
-	return false; //if(fecha.es_menor(otro.getFecha())){}
+
+
+bool Cuac::es_anterior(Cuac &otro)
+{	
+	//  Vamos a asumir que las mayúsculas son menores que las minúsculas porque así es como se compara por defecto 
+
+	Fecha otra = otro.getFecha();	// Creamos otro objeto fecha, no podemos hacer directamente es_menor(otro.getFecha()) porque el valor se pierde en la misma línea de código al no ser una variable real.
+	
+	if(fecha.es_menor(otra)) return true; 	// La fecha es anterior -> el cuac es anterior
+
+	if (!fecha.es_igual(otra)) return false;	// Entonces la fecha es mayor -> el cuac es posterior
+
+	string otroTexto = otro.getTexto(); // Nos ahorramos llamar una vez a getTexto()
+
+	if (texto < otroTexto) return true;		// Comparamos texto
+    if (texto > otroTexto) return false;
+
+	return usuario < otro.getUsuario();		// Si era igual, comparamos usuario
+
 }
 
 
