@@ -186,19 +186,19 @@ void Cuac::escribir()
 	cout << endl << "   " << texto << endl;
 }
 
-bool Cuac::es_anterior(Cuac &otro)
+bool Cuac::es_anterior(Cuac &otro)  // Que sea anterior quiere decir que es más reciente, porque se muestra antes
 {	
 	//  Vamos a asumir que las mayúsculas son menores que las minúsculas porque así es como se compara por defecto 
 
 	Fecha otra = otro.getFecha();	// Creamos otro objeto fecha, no podemos hacer directamente es_menor(otro.getFecha()) porque el valor se pierde en la misma línea de código al no ser una variable real.
 	
-	if(fecha.es_menor(otra)) return true; 	// La fecha es anterior -> el cuac es anterior
+	if(otra.es_menor(fecha)) return true; 	// La otra es menor -> el cuac es posterior (más reciente)
 
-	if (!fecha.es_igual(otra)) return false;	// Entonces la fecha es mayor -> el cuac es posterior
+	if (!fecha.es_igual(otra)) return false;	// Entonces la otra es mayor -> el otro cuac es posterior 
 
 	string otroTexto = otro.getTexto(); // Nos ahorramos llamar una vez a getTexto()
 
-	if (texto < otroTexto) return true;		// Comparamos texto
+	if (texto < otroTexto) return true;		// Comparamos texto, si es menor el del cuac actual, asumimos que es más reciente
     if (texto > otroTexto) return false;
 
 	return usuario < otro.getUsuario();		// Si era igual, comparamos usuario
