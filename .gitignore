@@ -4,3 +4,4 @@ a.exe
 *.pptx
 salida
 .~*
+*.o

@@ -42,3 +42,12 @@ Al principio escribimos este código para `es_anterior`. Luego le preguntamos a 
 `Cuac actual;`	// Lo definimos después de la clase Cuac.
 
 Quitado un salto de línea en Cuac::escribir después del texto.
+
+## 006.cpp (Diccionario + ahora con módulos)
+
+De momento, Fecha.h es padre de todas a nivel de módulos
+
+Vamos a declarar el `Diccionario dic;` como una variable global para no tener que pasarlo como parámetro a todas las funciones
+
+¿Por qué es const el array de frases? -> Porque sabemos que no van a cambiar
+Ahora lo ponemos como `extern`, pues no puede estar redefinido en Cuac.cpp, con el extern le decimos que está definido en otro sitio.
