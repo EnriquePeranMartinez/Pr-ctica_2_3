@@ -6,32 +6,15 @@ int contador = 0;
 DiccionarioCuacs dic;   // Declaramos el diccionario aquí
 Cuac actual;		// !!! Esto probablemente ya no hará falta !!!
 
-void procesar_exit(){
-	
-}
 
 void procesar_pcuac(){
-	if (actual.leer_pcuac()){	// Lo leemos y nos aseguramos de que es correcto
-		cout << ++contador << " cuac";		// Tenemos un cuac nuevo
-		cout << endl;			// Salto de línea para el siguiente comando
-	}
-	else {
-		cerr << "Error al procesar pcuac";
-		procesar_exit();	// Forzamos la salidad del programa
-	}
-
+	actual.leer_pcuac();
+	dic.insertar(actual);
 }
 
 void procesar_mcuac(){
-	if (actual.leer_mcuac()){	// Lo leemos y nos aseguramos de que es correcto
-		cout << ++contador << " cuac";		// Tenemos un cuac nuevo
-		cout << endl;			// Salto de línea para el siguiente comando
-	}
-	else {
-		cerr << "Error al procesar pcuac";
-		procesar_exit();	// Forzamos la salidad del programa
-	}
-
+	actual.leer_mcuac();
+	dic.insertar(actual);
 }
 
 void procesar_last(){
@@ -87,7 +70,6 @@ void interprete(string comando){
 	else if (comando == "follow") procesar_follow();
 	else if (comando == "date") procesar_date();
 	else if (comando == "tag") procesar_tag();
-	else if (comando == "exit") procesar_exit();
 }
 
 int main(){

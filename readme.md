@@ -51,3 +51,9 @@ Vamos a declarar el `Diccionario dic;` como una variable global para no tener qu
 
 ¿Por qué es const el array de frases? -> Porque sabemos que no van a cambiar
 Ahora lo ponemos como `extern`, pues no puede estar redefinido en Cuac.cpp, con el extern le decimos que está definido en otro sitio.
+
+TODO: !! la lógica para mostrar los cuacs más recientes es al revés, primero se muestran los más recientes, no los anteriores !!
+
+TODO: no hace falta manejar errores, así que la función leer la he cambiado (bool->void), cambiar en ejercicios anteriores !!
+
+TODO: exit no es un comando a procesar, quitar del 005

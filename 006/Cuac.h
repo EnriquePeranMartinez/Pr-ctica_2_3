@@ -21,8 +21,8 @@ class Cuac {
 	string getTexto();
 	// Funcionalidad
 	
-    bool leer_mcuac();
-    bool leer_pcuac();
+    void leer_mcuac();
+    void leer_pcuac();
     void escribir();
     bool es_anterior(Cuac &otro);
 };

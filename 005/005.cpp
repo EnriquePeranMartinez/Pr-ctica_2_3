@@ -152,8 +152,8 @@ class Cuac {
 	string getTexto();
 	// Funcionalidad
 	
-    bool leer_mcuac();
-    bool leer_pcuac();
+    void leer_mcuac();
+    void leer_pcuac();
     void escribir();
     bool es_anterior(Cuac &otro);
 };
@@ -164,17 +164,15 @@ Fecha Cuac::getFecha() { return fecha; }
 string Cuac::getUsuario() { return usuario;}
 string Cuac::getTexto() { return texto; }
 
-bool Cuac::leer_mcuac()
+void Cuac::leer_mcuac()
 {
     cin >> usuario;
     fecha.leer();
 	cin.ignore();		// Ignoramos el \n
     getline(cin, texto);
-    if (texto.size() > 140) return false;
-	else return true;
 }
 
-bool Cuac::leer_pcuac()
+void Cuac::leer_pcuac()
 {
 	int n_mensaje;
 	cin >> usuario;
@@ -182,8 +180,6 @@ bool Cuac::leer_pcuac()
 	cin.ignore();		// Ignoramos el \n
 	cin >> n_mensaje;	// Guardamos el número del mensaje
 	texto = numero_a_frase(n_mensaje);	// Lo convertimos y lo asignamos al texto
-
-	return true;
 }
 
 void Cuac::escribir()
@@ -214,32 +210,17 @@ bool Cuac::es_anterior(Cuac &otro)
 
 Cuac actual;	// Lo definimos después de la clase Cuac
 
-void procesar_exit(){
-	
-}
-
 void procesar_pcuac(){
-	if (actual.leer_pcuac()){	// Lo leemos y nos aseguramos de que es correcto
-		cout << ++contador << " cuac";		// Tenemos un cuac nuevo
-		cout << endl;			// Salto de línea para el siguiente comando
-	}
-	else {
-		cerr << "Error al procesar pcuac";
-		procesar_exit();	// Forzamos la salidad del programa
-	}
+	actual.leer_pcuac();	// Lo leemos
+	cout << ++contador << " cuac";		// Tenemos un cuac nuevo
+	cout << endl;			// Salto de línea para el siguiente comando
 
 }
 
 void procesar_mcuac(){
-	if (actual.leer_mcuac()){	// Lo leemos y nos aseguramos de que es correcto
-		cout << ++contador << " cuac";		// Tenemos un cuac nuevo
-		cout << endl;			// Salto de línea para el siguiente comando
-	}
-	else {
-		cerr << "Error al procesar pcuac";
-		procesar_exit();	// Forzamos la salidad del programa
-	}
-
+	actual.leer_mcuac();	// Lo leemos 
+	cout << ++contador << " cuac";		// Tenemos un cuac nuevo
+	cout << endl;			// Salto de línea para el siguiente comando
 }
 
 void procesar_last(){
@@ -288,10 +269,6 @@ void procesar_tag(){
 	cout << endl << "Total: 1 cuac" << endl;	// Ponemos el total de cuacs que de momento solo es 1
 }
 
-
-
-
-
 void interprete(string comando){
 	if (comando == "pcuac") procesar_pcuac();
 	else if (comando == "mcuac") procesar_mcuac();
@@ -299,10 +276,7 @@ void interprete(string comando){
 	else if (comando == "follow") procesar_follow();
 	else if (comando == "date") procesar_date();
 	else if (comando == "tag") procesar_tag();
-	else if (comando == "exit") procesar_exit();
-	
 }
-
 
 int main(){
 	

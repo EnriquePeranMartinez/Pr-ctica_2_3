@@ -43,17 +43,15 @@ Fecha Cuac::getFecha() { return fecha; }
 string Cuac::getUsuario() { return usuario;}
 string Cuac::getTexto() { return texto; }
 
-bool Cuac::leer_mcuac()
+void Cuac::leer_mcuac()
 {
     cin >> usuario;
     fecha.leer();
 	cin.ignore();		// Ignoramos el \n
     getline(cin, texto);
-    if (texto.size() > 140) return false;
-	else return true;
 }
 
-bool Cuac::leer_pcuac()
+void Cuac::leer_pcuac()
 {
 	int n_mensaje;
 	cin >> usuario;
@@ -61,8 +59,6 @@ bool Cuac::leer_pcuac()
 	cin.ignore();		// Ignoramos el \n
 	cin >> n_mensaje;	// Guardamos el número del mensaje
 	texto = numero_a_frase(n_mensaje);	// Lo convertimos y lo asignamos al texto
-
-	return true;
 }
 
 void Cuac::escribir()
