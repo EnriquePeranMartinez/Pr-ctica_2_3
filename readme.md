@@ -54,6 +54,3 @@ Ahora lo ponemos como `extern`, pues no puede estar redefinido en Cuac.cpp, con 
 
 TODO: !! la lógica para mostrar los cuacs más recientes es al revés, primero se muestran los más recientes, no los anteriores !!
 
-TODO: no hace falta manejar errores, así que la función leer la he cambiado (bool->void), cambiar en ejercicios anteriores !!
-
-TODO: exit no es un comando a procesar, quitar del 005

@@ -149,8 +149,8 @@ class Cuac {
 	string getTexto();
 	// Funcionalidad
 	
-    bool leer_mcuac();
-    bool leer_pcuac();
+    void leer_mcuac();
+    void leer_pcuac();
     void escribir();
     bool es_anterior(Cuac &otro);
 };
@@ -161,17 +161,15 @@ Fecha Cuac::getFecha() { return fecha; }
 string Cuac::getUsuario() { return usuario;}
 string Cuac::getTexto() { return texto; }
 
-bool Cuac::leer_mcuac()
+void Cuac::leer_mcuac()
 {
     cin >> usuario;
     fecha.leer();
 	cin.ignore();		// Ignoramos el \n
     getline(cin, texto);
-    if (texto.size() > 140) return false;
-	else return true;
 }
 
-bool Cuac::leer_pcuac()
+void Cuac::leer_pcuac()
 {
 	int n_mensaje;
 	cin >> usuario;
@@ -179,8 +177,6 @@ bool Cuac::leer_pcuac()
 	cin.ignore();		// Ignoramos el \n
 	cin >> n_mensaje;	// Guardamos el número del mensaje
 	texto = numero_a_frase(n_mensaje);	// Lo convertimos y lo asignamos al texto
-
-	return true;
 }
 
 void Cuac::escribir()
@@ -189,8 +185,6 @@ void Cuac::escribir()
 	fecha.escribir();
 	cout << endl << "   " << texto << endl;
 }
-
-
 
 bool Cuac::es_anterior(Cuac &otro)
 {	
@@ -223,9 +217,6 @@ int main(){
         else if (comando == "pcuac") cuac.leer_pcuac();
         cout << ++num << " cuac" << endl;
         cuac.escribir();
-
     }
-	
-
     return 0;
 }
