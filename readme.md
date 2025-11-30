@@ -56,3 +56,6 @@ Vamos a declarar el `DiccionarioCuacs dic;` como una variable global para no ten
 
 ¿Por qué es const el array de frases? -> Porque sabemos que no van a cambiar
 Ahora lo ponemos como `extern`, pues no puede estar redefinido en Cuac.cpp, con el extern le decimos que está definido en otro sitio.
+
+
+Hemos decidido que DiccionarioCuacs tendrá un atributo privado Iterador, para no crearlo cada vez al insertar.

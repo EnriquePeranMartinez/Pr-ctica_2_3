@@ -7,6 +7,7 @@
 class DiccionarioCuacs {
    private:
         list<Cuac> lista;
+        list<Cuac>::iterator itLista;
         int contador;
    public:
         DiccionarioCuacs(){ contador = 0; }    // Constructor que solo inicializa el contador a 0
