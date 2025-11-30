@@ -7,7 +7,7 @@
 ## 004.cpp (Clase Cuac)
 Cambiamos `numero_a_frase` para que devuelva un string en vez de imprimirlo directamente.
 
- Creamos otro objeto fecha, no podemos hacer directamente `es_menor(otro.getFecha())` porque el valor se pierde en la misma línea de código al no ser una variable real. (Gemini 3.0)
+Creamos otro objeto fecha, no podemos hacer directamente `es_menor(otro.getFecha())` porque el valor se pierde en la misma línea de código al no ser una variable real. (Gemini 3.0)
 
 Al principio escribimos este código para `es_anterior`. Luego le preguntamos a Gemini si era eficiente, y nos dio una solución más eficiente y legible (Gemini 3.0).
 
@@ -36,3 +36,9 @@ Al principio escribimos este código para `es_anterior`. Luego le preguntamos a 
 
 }
 ``` 
+
+## 005.cpp (Intérprete de comandos)
+
+`Cuac actual;`	// Lo definimos después de la clase Cuac.
+
+Quitado un salto de línea en Cuac::escribir después del texto.
