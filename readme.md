@@ -65,3 +65,9 @@ Hemos decidido que DiccionarioCuacs tendrá un atributo privado Iterador, para n
 
 ### En last
 i++ va primero. Si se pone al final, siempre añadirá un cuac de más al total, porque lo suma antes de verificar la condición
+
+### En date
+Creo que el segundo while vuelve a hacer los mismos 
+	```cuac = *itLista;
+	fecha = cuac.getFecha();```
+que el while anterior, pero bueno creo que funciona bien.

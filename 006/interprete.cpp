@@ -46,9 +46,7 @@ void procesar_date(){
 	fecha_fin.escribir();
 	cout << endl;
 
-	cout << "1. ";
-	//actual.escribir();	// Ponemos "1. " y escribimos el cuac (de momento solo el actual)
-	cout << endl << "Total: 1 cuac" << endl;	// Ponemos el total de cuacs que de momento solo es 1
+	dic.date(fecha_ini, fecha_fin);
 }
 
 void procesar_tag(){

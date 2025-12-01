@@ -51,9 +51,41 @@ void DiccionarioCuacs::follow (string nombre){
         itLista++;
     }
     cout << "Total: " << i << " cuac" << endl; // Escribimos el total de cuacs que se han impreso
-
 }
 
 void DiccionarioCuacs::date (Fecha f1, Fecha f2){
+    itLista = lista.begin();
+    Cuac cuac;
+    Fecha fecha;
+    int i = 0;
+    bool bajo_f2 = false;
+    bool sobre_f1 = true;
+
+    // Como están los de la fecha más alta al principio, comprobamos esa primero
     
+    // Primer while para avanzar hasta llegar a f2
+    while (itLista != lista.end() && bajo_f2 == false){ // Avanzamos hasta que se acabe la lista o bajemos de la fecha f2
+        cuac = *itLista;
+        fecha = cuac.getFecha();
+        if (f2.es_menor(fecha)){        // Si la fecha del cuac va después que la máxima (f2), seguimos recorriendo, reduciendo fecha
+            itLista++;
+        }
+        else bajo_f2 = true;
+    }
+
+    // Segundo while para imprimir hasta llegar a f1
+    while (itLista != lista.end() && sobre_f1 == true)
+    {
+        cuac = *itLista;
+        fecha = cuac.getFecha();        // Esto es código repetido de la última iteración del bucle anterior !!!
+        if (!fecha.es_menor(f1)){
+            i++;
+            cout << i << ". ";                      // Escribimos el número del cuac
+            cuac.escribir();                        // Escribimos el cuac
+            cout << endl;                           // Salto de línea para el siguiente
+        }
+        else sobre_f1 = false;
+        itLista++;
+    }
+    cout << "Total: " << i << " cuac" << endl; // Escribimos el total de cuacs que se han impreso
 }
