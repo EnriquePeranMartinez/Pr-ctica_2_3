@@ -59,3 +59,9 @@ Ahora lo ponemos como `extern`, pues no puede estar redefinido en Cuac.cpp, con 
 
 
 Hemos decidido que DiccionarioCuacs tendrá un atributo privado Iterador, para no crearlo cada vez al insertar.
+
+### En insertar	
+`while (itLista != lista.end() && insertado == false)`, en principio no puede ocurrir el error de intentar acceder al valor de lista.end(), porque después de avanzar lo primero que se hace es comprobar si es el final.
+
+### En last
+i++ va primero. Si se pone al final, siempre añadirá un cuac de más al total, porque lo suma antes de verificar la condición

@@ -23,11 +23,8 @@ void procesar_last(){
 	int n;
 	cin >> n;	// Leemos el número de los últimos cuacs que hay que mostrar
 
-	/*cout << "last " << n << endl;	// Escribimos exactamente el mismo comando
-	cout << "1. ";
-	actual.escribir();	// Ponemos "1. " y escribimos el cuac (de momento solo el actual)
-	cout << endl << "Total: 1 cuac" << endl;	// Ponemos el total de cuacs que de momento solo es 1
-	*/
+	cout << "last " << n << endl;
+	dic.last(n);
 }
 
 void procesar_follow(){

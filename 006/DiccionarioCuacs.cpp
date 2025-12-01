@@ -7,7 +7,7 @@ void DiccionarioCuacs::insertar(Cuac nuevo){
     bool insertado = false;
 
     while (itLista != lista.end() && insertado == false){   // Mientras no llegue al final y no se haya insertado
-        if (nuevo.es_anterior(*itLista)){                   // Se comprueba si al nuevo es anterior al actual de la lista
+        if (nuevo.es_anterior(*itLista)){                   // Se comprueba si el nuevo es anterior al actual de la lista
             lista.insert(itLista, nuevo);                   // Si es así, se inserta delante
             insertado = true;                               // Se marca que se ha insertado
         }
@@ -19,7 +19,20 @@ void DiccionarioCuacs::insertar(Cuac nuevo){
 }
 
 void DiccionarioCuacs::last (int N){
+    itLista = lista.begin();
+    Cuac cuac;
+    int i = 0;
 
+    while (itLista != lista.end() && i < N){  // Mientras no llegue al final y todavía queden cuacs por mostrar
+        i++;                                    // Uno menos para escribir
+        cuac = *itLista;
+        cout << i << ". ";                      // Escribimos el número del cuac
+        cuac.escribir();                        // Escribimos el cuac
+        cout << endl;                           // Salto de línea para el siguiente
+
+        itLista++;                          // Avanzamos en la lista
+    }
+    cout << "Total: " << i << " cuac" << endl; // Escribimos el total de cuacs que se han impreso
 }
 
 void DiccionarioCuacs::follow (string nombre){
