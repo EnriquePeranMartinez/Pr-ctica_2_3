@@ -36,9 +36,24 @@ void DiccionarioCuacs::last (int N){
 }
 
 void DiccionarioCuacs::follow (string nombre){
+    itLista = lista.begin();
+    Cuac cuac;
+    int i = 0;
+
+    while (itLista != lista.end()){         // Recorro toda la lista en el peor de los casos
+        cuac = *itLista;
+        if (nombre == cuac.getUsuario()){       // Para cada cuac compruebo si es el nombre que me pasan
+            i++;
+            cout << i << ". ";                      // Escribimos el número del cuac
+            cuac.escribir();                        // Escribimos el cuac
+            cout << endl;                           // Salto de línea para el siguiente
+        }
+        itLista++;
+    }
+    cout << "Total: " << i << " cuac" << endl; // Escribimos el total de cuacs que se han impreso
 
 }
 
 void DiccionarioCuacs::date (Fecha f1, Fecha f2){
-
+    
 }
