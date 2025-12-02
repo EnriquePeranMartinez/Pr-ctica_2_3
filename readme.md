@@ -71,3 +71,25 @@ Creo que el segundo while vuelve a hacer los mismos
 	```cuac = *itLista;
 	fecha = cuac.getFecha();```
 que el while anterior, pero bueno creo que funciona bien.
+
+
+
+## 200 (TablaHash)
+
+La función de dispersión devolverá un `long long int` para evitar desbordamiento.
+Los métodos `funcionDispersion()` y `reestructurar()` son privados, solo los utilizará la tabla.
+
+De momento, reestructurar se llamará cuando el número de elementos sea el doble que el cubetas de la lista (2*M)
+
+Creo que la mejor forma de almacenar los cuacs es almacenando en cada elemento del array
+el nombre de usuario y un puntero a una lista con sus Cuacs. De esta manera, cuando se busquen los Cuacs de un usuario en
+concreto, solo tiene que buscar el nombre mediante la función de dispersión, y luego buscar en la lista.
+**¿Esto tiene problemas?** -> Si tengo pocos usuarios se me van a llenar mucho las cubetas. PASA LO MISMO DE LA OTRA MANERA
+
+Vamos a crear la clase Par que contiene el nombre de usuario y la lista con los cuacs del usuario.
+¿Hacer que Par esté dentro de TablaHash? ¿Cómo declarar sus atributos, privados, públicos, hacer getters? -> De momento fuera + getters.
+
+He dividido insertar en insertar en el Par e insertar el Cuac en la lista de Cuacs del Par. PUEDE QUE LUEGO LO CAMBIE
+
+Sobre la memoria dinámica:
+Creo que solo hace falta reservar memoria para el array de listas de pares, porque lo demás (list<>) ya reservan automáticamente
