@@ -7,7 +7,6 @@ class DiccionarioCuacs {
      private:
           TablaHash tabla;
      public:
-          DiccionarioCuacs ();
      void insertar (Cuac nuevo)
           { tabla.insertar(nuevo); }
      void follow (string nombre)

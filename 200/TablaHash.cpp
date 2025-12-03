@@ -1,13 +1,9 @@
 #include "TablaHash.h"
 #include <list>
 
-Par::Par(string u, list<Cuac> c){
-    usuario = u;
-    cuacs = c;
-}
 
 unsigned long long TablaHash::funcionDispersion(string usuario){
-
+    return 0;   
 }
 
 void TablaHash::reestructurar(){
@@ -25,10 +21,6 @@ TablaHash::~TablaHash (){
     delete[] T;
 }
 
-void TablaHash::insertarCuac (Cuac nuevo){
-
-}
-
 void TablaHash::insertar (Cuac nuevo){
     
     if (nElem > 2*M)
@@ -37,43 +29,45 @@ void TablaHash::insertar (Cuac nuevo){
 	}
 
     string nuevo_usuario = nuevo.getUsuario();          // Guardamos el nombre del usuario del cuac que queremos insertar
-    Par par_usuario;                                    // Declaramos una variable auxiliar para ir recogiendo los nombres de la lista de pares
-
     unsigned long long int h = funcionDispersion(nuevo_usuario);   // Casilla del array en la que lo meteremos
-    list<Par>::iterator it = T[h].begin();              // Tratamos la casilla del array como una lista a iterar
+    
+    list<Par>::iterator itPar = T[h].begin();               // Tratamos la casilla del array como una lista a iterar
+    list<Cuac>::iterator itCuac;                            // Iterador para recorrer los Cuacs de un par
 
-    bool insertado = false;                             // Condición para saber si se ha encontrado ya un par con el mismo usuario
-    while (it != T[h].end() && insertado == false)      // Vamos recorriendo toda la lista de pares
-    {
-        par_usuario = *it;                              // Sacamos el contenido del iterador (el par)
-        if (nuevo_usuario == par_usuario.getUsuario())  // Comparamos el usuario del cuac a insertar con el del par
-        {
-            insertado = true;                           // Se ha encontrado el mismo usuario -> Saldremos del bucle en cuanto se inserte
-            insertarCuac(nuevo);        
+
+    // BUCLE ENCONTRAR EL PAR DEL USUARIO
+    bool insertado = false;                                 // Condición para saber si se ha encontrado ya un par con el mismo usuario
+    while (itPar != T[h].end() && insertado == false){       // Vamos recorriendo toda la lista de pares
+    
+        Par &par_usuario = *itPar;                             // Sacamos el contenido del iterador (el par) por referencia
+        if (nuevo_usuario == par_usuario.getUsuario()){                 // Comparamos el usuario del cuac a insertar con el del par
+            list<Cuac> &lista_cuacs = par_usuario.getCuacs();           // Sacamos la lista de cuacs del par por referencia
+            
+            // BUCLE INSERTAR EN LA LISTA DE CUACS DEL PAR
+            itCuac = lista_cuacs.begin();                               // Iterador para la lista de cuacs
+            while (itCuac != lista_cuacs.end() && insertado == false){  // Recorreremos la lista de cuacs hasta llegar al final o insertarlo
+                if (nuevo.es_anterior(*itCuac))  {                      // Vamos comprobando si el nuevo es anterior (más reciente) que el del par a comparar
+
+                    lista_cuacs.insert(itCuac, nuevo);          // Si es así, se inserta
+                    insertado = true;                           // y se marca la condición de insertado
+                }
+                else itCuac++;                                  // Si no, simplemente seguimos
+            }
+            if (!insertado){
+                lista_cuacs.push_back(nuevo);       // Si la recorremos entera y no se insertó (es el menos reciente), lo metemos al final
+                insertado = true;
+            }
         }
-        else it++;
+        else itPar++;       // No hemos encontrado un par con el mismo nombre de usuario esta iteración, seguimos.
     }
-    if (!insertado)
-    {
+    // No hemos encontrado ningún par que tenga el mismo nombre de usuario que el nuevo -> creamos otro y lo metemos al final
+    if (!insertado){
         list<Cuac> lista_nuevo;                 // Creamos la lista de cuacs propia del nuevo par
         lista_nuevo.push_back(nuevo);           // Añadimos el nuevo Cuac a su lista
         Par nuevo_par(nuevo_usuario, lista_nuevo);  // Creamos el nuevo par con los dos valores anteriors
         T[h].push_back(nuevo_par);              // Insertamos el nuevo par en la lista de la tabla
     }
-    
-    
-
-    while (it != lista.end() && insertado == false){   // Mientras no llegue al final y no se haya insertado
-        if (nuevo.es_anterior(*it)){                   // Se comprueba si el nuevo es anterior al actual de la lista
-            lista.insert(it, nuevo);                   // Si es así, se inserta delante
-            insertado = true;                               // Se marca que se ha insertado
-        }
-        else it++;                                     // Si no es anterior, se sigue iterando
-    }
-    if (!insertado) lista.push_back(nuevo);     // Si se ha recorrido toda la lista y no es anterior a ninguno, pues será el último
-    
-
-    nElem++;
+    nElem++;        // + 1 cuac nuevo
 }
 
 

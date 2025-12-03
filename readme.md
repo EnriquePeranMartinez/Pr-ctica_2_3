@@ -67,14 +67,13 @@ Hemos decidido que DiccionarioCuacs tendrá un atributo privado Iterador, para n
 i++ va primero. Si se pone al final, siempre añadirá un cuac de más al total, porque lo suma antes de verificar la condición
 
 ### En date
-Creo que el segundo while vuelve a hacer los mismos 
+Creo que el segundo while vuelve a hacer los mismos  
 	```cuac = *itLista;
 	fecha = cuac.getFecha();```
-que el while anterior, pero bueno creo que funciona bien.
+que el while anterior, pero bueno creo que funciona bien. 
 
 
-
-## 200 (TablaHash)
+## 200 (TablaHash)	¿DEBERÍAMOS PASAR CASI TODO POR REFERENCIA?
 
 La función de dispersión devolverá un `long long int` para evitar desbordamiento.
 Los métodos `funcionDispersion()` y `reestructurar()` son privados, solo los utilizará la tabla.
@@ -85,11 +84,25 @@ Creo que la mejor forma de almacenar los cuacs es almacenando en cada elemento d
 el nombre de usuario y un puntero a una lista con sus Cuacs. De esta manera, cuando se busquen los Cuacs de un usuario en
 concreto, solo tiene que buscar el nombre mediante la función de dispersión, y luego buscar en la lista.
 **¿Esto tiene problemas?** -> Si tengo pocos usuarios se me van a llenar mucho las cubetas. PASA LO MISMO DE LA OTRA MANERA
+NO VA A HABER POCOS USUARIOS
 
 Vamos a crear la clase Par que contiene el nombre de usuario y la lista con los cuacs del usuario.
-¿Hacer que Par esté dentro de TablaHash? ¿Cómo declarar sus atributos, privados, públicos, hacer getters? -> De momento fuera + getters.
+¿Hacer que Par esté dentro de TablaHash? ¿Cómo declarar sus atributos, privados, públicos, hacer getters? -> De momento fuera + getters. Además, la lista de cuacs será por referencia para poder modificarla
 
 He dividido insertar en insertar en el Par e insertar el Cuac en la lista de Cuacs del Par. PUEDE QUE LUEGO LO CAMBIE
 
 Sobre la memoria dinámica:
 Creo que solo hace falta reservar memoria para el array de listas de pares, porque lo demás (list<>) ya reservan automáticamente
+
+El constructor para `DiccionarioCuacs` **no hace falta** porque no inicializa nada, usa la TablaHash.
+
+Creamos 
+
+### insertar tabla hash
+
+Un iterador para los pares y otro para los cuacs de cada par
+Para poder modificar la lista de pares de la tabla, se pasa por referencia, al igual que su lista de cuacs.
+Haremos un bucle para encontrar un par que sea el mismo usuario (o si no, añadirlo al final), y otro dentro para insertar el cuac.
+La inserción es similar a la del ejercicio anterior.
+
+
