@@ -6,6 +6,7 @@ int contador = 0;
 DiccionarioCuacs dic;   // Declaramos el diccionario aquí
 
 void procesar_pcuac(){
+	
 	Cuac nuevo;
 	nuevo.leer_pcuac();
 	dic.insertar(nuevo);
@@ -69,7 +70,7 @@ void interprete(string comando){
 }
 
 int main(){
-	
+
 	string comando;
 	while (cin >> comando && comando!="exit")
 		interprete(comando);

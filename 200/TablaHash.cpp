@@ -1,20 +1,32 @@
 #include "TablaHash.h"
 #include <list>
+#include <cmath>
 
 
-unsigned long long TablaHash::funcionDispersion(string usuario){
-    return 0;   
+unsigned int TablaHash::funcionDispersion(string usuario){
+    unsigned int res = 0;
+    short int longitud = usuario.length();
+    for (int i = 0; i < longitud; i++)      // Suma posicional
+    {
+        res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));
+    }
+
+    //cout << "Dispersión: " << res % M << endl;
+    return res % M;
+    
+    
 }
 
 void TablaHash::reestructurar(){
-
+    list<Par> vieja = *T;      // Guardamos la tabla vieja
+    M = 2 * M;                 // Duplicamos el tamaño
 }
 
 TablaHash::TablaHash (){
     nElem = 0;
-    int M = TAM_TABLA;
+    M = TAM_TABLA;
 
-    list<Par> *T = new list<Par>[M];  // Construimos la tabla con dispersión abierta y tamaño variable
+    T = new list<Par>[M];  // Construimos la tabla con dispersión abierta y tamaño variable
 }
 
 TablaHash::~TablaHash (){
@@ -23,13 +35,13 @@ TablaHash::~TablaHash (){
 
 void TablaHash::insertar (Cuac nuevo){
     
-    if (nElem > 2*M)
+    if (nElem > 2*M)            // Vemos si hace falta reestructurar
 	{
 		reestructurar();
 	}
 
     string nuevo_usuario = nuevo.getUsuario();          // Guardamos el nombre del usuario del cuac que queremos insertar
-    unsigned long long int h = funcionDispersion(nuevo_usuario);   // Casilla del array en la que lo meteremos
+    unsigned int h = funcionDispersion(nuevo_usuario);   // Casilla del array en la que lo meteremos
     
     list<Par>::iterator itPar = T[h].begin();               // Tratamos la casilla del array como una lista a iterar
     list<Cuac>::iterator itCuac;                            // Iterador para recorrer los Cuacs de un par
@@ -72,6 +84,34 @@ void TablaHash::insertar (Cuac nuevo){
 
 
 void TablaHash::consultar (string nombre){
-    //...
+    // Recibo el nombre, voy a buscar la casilla de la tabla (con funcDisp) donde estará el usuario.
+    // Luego lo buscaré de entre la lista de Pares
+    unsigned int h = funcionDispersion(nombre);
+    list<Par>::iterator itPar = T[h].begin();               // Tratamos la casilla del array como una lista a iterar
+    list<Cuac>::iterator itCuac;                            // Iterador para recorrer los Cuacs de un par
+    Cuac cuac;
+    int contador = 0;
+
+    // BUCLE ENCONTRAR PAR (NOMBRE USUARIO)
+    bool encontrado = false;
+    while (itPar != T[h].end() && encontrado == false){     // Recorremos los pares hasta encontrar el del nombre que buscamos
+        Par &par_usuario = *itPar;
+        if (nombre == par_usuario.getUsuario()){
+            encontrado = true;
+            // BUCLE LISTAR LOS CUACS DEL USUARIO
+            list<Cuac> &lista_cuacs = par_usuario.getCuacs();
+            itCuac = lista_cuacs.begin();
+            while (itCuac != lista_cuacs.end()){
+                contador++;
+                cuac = *itCuac;
+                cout << contador << ". ";
+                cuac.escribir();
+                cout << endl;
+                itCuac++;
+            }
+        }
+        else itPar++;
+    }
+    cout << "Total: " << contador << " cuac" << endl;
 }
 

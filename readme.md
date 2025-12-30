@@ -54,7 +54,7 @@ De momento, Fecha.h es padre de todas a nivel de módulos
 
 Vamos a declarar el `DiccionarioCuacs dic;` como una variable global para no tener que pasarlo como parámetro a todas las funciones
 
-¿Por qué es const el array de frases? -> Porque sabemos que no van a cambiar
+¿Por qué es const el array de frases? $\to$ Porque sabemos que no van a cambiar
 Ahora lo ponemos como `extern`, pues no puede estar redefinido en Cuac.cpp, con el extern le decimos que está definido en otro sitio.
 
 
@@ -75,10 +75,7 @@ que el while anterior, pero bueno creo que funciona bien.
 
 ## 200 (TablaHash)	¿DEBERÍAMOS PASAR CASI TODO POR REFERENCIA?
 
-La función de dispersión devolverá un `long long int` para evitar desbordamiento.
-Los métodos `funcionDispersion()` y `reestructurar()` son privados, solo los utilizará la tabla.
-
-De momento, reestructurar se llamará cuando el número de elementos sea el doble que el cubetas de la lista (2*M)
+De momento, reestructurar se llamará cuando el número de elementos sea el doble que el de las cubetas de la lista (2*M)
 
 Creo que la mejor forma de almacenar los cuacs es almacenando en cada elemento del array
 el nombre de usuario y un puntero a una lista con sus Cuacs. De esta manera, cuando se busquen los Cuacs de un usuario en
@@ -105,4 +102,26 @@ Para poder modificar la lista de pares de la tabla, se pasa por referencia, al i
 Haremos un bucle para encontrar un par que sea el mismo usuario (o si no, añadirlo al final), y otro dentro para insertar el cuac.
 La inserción es similar a la del ejercicio anterior.
 
+
+### Función de dispersión
+
+La función de dispersión devolverá un `long long int` para evitar desbordamiento.
+Los métodos `funcionDispersion()` y `reestructurar()` son privados, solo los utilizará la tabla.
+
+Probaremos primero con la suma posicional -> De momento no parece que saque valores muy repartidos
+
+### consultar
+
+Muy similar a insertar
+
+!! TODO: Cambiar variable i para "Total: i cuacs" por contador en ejercicios anteriores !!
+aunque igual no hace falta, solo cuenta realmente el proyecto final
+
+## Pruebas tamaño tabla y funciones de dispersión
+Tamaño fijo
+
+
+
+
+## 300 (Árbol)
 

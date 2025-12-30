@@ -4,7 +4,8 @@
 #include "Cuac.h"
 #include "Par.h"
 #include <list>
-#define TAM_TABLA 50000 
+#define TAM_TABLA 50000
+#define PRIMO 11
 
 
 
@@ -13,7 +14,7 @@ class TablaHash {
       int nElem;      // Elementos de la tabla
       int M;          // Tamaño de la tabla
       list<Par> *T;     // Array de listas que contienen Pares de usuarios y sus listas de cuacs
-      unsigned long long funcionDispersion (string usuario);
+      unsigned int funcionDispersion (string usuario);
       void reestructurar(void);
       void insertarCuac(Cuac nuevo);   // Este será privado porque solo lo utiliza insertar
 
