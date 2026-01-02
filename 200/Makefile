@@ -7,7 +7,7 @@ interprete.o: interprete.cpp DiccionarioCuacs.h
 DiccionarioCuacs.o: DiccionarioCuacs.cpp DiccionarioCuacs.h TablaHash.h
 	g++ -c DiccionarioCuacs.cpp
 
-TablaHash.o: TablaHash.cpp TablaHash.h Cuac.h
+TablaHash.o: TablaHash.cpp TablaHash.h Cuac.h Par.h
 	g++ -c TablaHash.cpp
 
 Par.o: Par.cpp Par.h Cuac.h

@@ -102,6 +102,9 @@ Para poder modificar la lista de pares de la tabla, se pasa por referencia, al i
 Haremos un bucle para encontrar un par que sea el mismo usuario (o si no, añadirlo al final), y otro dentro para insertar el cuac.
 La inserción es similar a la del ejercicio anterior.
 
+### reestructurar
+Como los datos de Par gestionan automáticamente su memoria dinámica, solo tenemos que hacer delete[] vieja para borrar la tabla antigua y asignar la nueva a T 
+
 
 ### Función de dispersión
 
@@ -125,3 +128,15 @@ Tamaño fijo
 
 ## 300 (Árbol)
 
+Al final de insertar() de TablaHash.cpp, devolvemos la referencia del cuac insertado 
+ !!! ¿Hay que disminuir el it como en las diapositivas?
+
+
+
+
+
+
+
+ # Sesiones de trabajo
+
+ 2/1/2026 -- 11~13

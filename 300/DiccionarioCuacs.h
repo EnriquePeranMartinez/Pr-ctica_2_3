@@ -14,8 +14,10 @@ class DiccionarioCuacs {
                arbol.insertar(ref); }
      void follow (string nombre)
           { tabla.consultar(nombre); }
-     void last (int N);
-     void date (Fecha f1, Fecha f2);
+     void last (int N)
+       { arbol.last(N); }
+     void date (Fecha f1, Fecha f2)
+       { arbol.date(f1, f2); }
      int numElem ()
           { return tabla.numElem(); }
 };

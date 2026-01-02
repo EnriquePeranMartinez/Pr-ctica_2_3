@@ -18,8 +18,31 @@ unsigned int TablaHash::funcionDispersion(string usuario){
 }
 
 void TablaHash::reestructurar(){
-    list<Par> vieja = *T;      // Guardamos la tabla vieja
+    int antiguaM = M;          // Guardamos M para iterar en la tabla vieja
     M = 2 * M;                 // Duplicamos el tamaño
+
+    list<Par> *vieja = T;      // Guardamos la tabla vieja 
+    list<Par> *nueva = new list<Par>[M];    // Creamos la nueva tabla con el doble de listas
+    list<Par>::iterator itPar;      // Iterador para las listas de pares
+    Par par_actual;
+    int h;                          // Nuevo valor de la función de dispersión para la nueva tabla
+    
+    // BUCLE PARA RECORRER LAS CASILLAS DE LA TABLA
+    for (int i = 0; i < antiguaM; i++)
+    {
+        // BUCLE PARA RECORRER LA LISTA DE PARES
+        itPar = vieja[i].begin();      // Empezamos a iterar la lista de pares de la casilla i
+        while (itPar != vieja[i].end())
+        {
+            par_actual = *itPar;                             // Cogemos el par por valor
+            h = funcionDispersion(par_actual.getUsuario()); // Calculamos la nueva h
+            nueva[h].push_back(par_actual);                 // Metemos el par en la nueva tabla
+            itPar++;     
+        }
+    }
+    
+    delete[] vieja;
+    T = nueva;
 }
 
 TablaHash::TablaHash (){
@@ -35,7 +58,7 @@ TablaHash::~TablaHash (){
 
 void TablaHash::insertar (Cuac nuevo){
     
-    if (nElem > 2*M)            // Vemos si hace falta reestructurar
+    if (nElem > 2*M)            // Vemos si hace falta reestructurar (hay el doble de elementos que el tamaño de la tabla)
 	{
 		reestructurar();
 	}
