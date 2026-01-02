@@ -1,9 +1,13 @@
 #ifndef TABLAHASH_H
 #define TABLAHASH_H
 
-#include "Cuac.h"
+//#include "Cuac.h"
 #include "Par.h"
+#include <iostream>
 #include <list>
+
+using namespace std;
+
 #define TAM_TABLA 50000
 #define PRIMO 11
 
@@ -20,7 +24,7 @@ class TablaHash {
    public:
       TablaHash ();
       ~TablaHash ();
-      void insertar (Cuac nuevo);
+      Cuac *insertar (Cuac nuevo);
       void consultar (string nombre);
       int numElem (void) { return nElem; }
 };

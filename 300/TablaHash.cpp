@@ -2,7 +2,6 @@
 #include <list>
 #include <cmath>
 
-
 unsigned int TablaHash::funcionDispersion(string usuario){
     unsigned int res = 0;
     short int longitud = usuario.length();
@@ -56,7 +55,7 @@ TablaHash::~TablaHash (){
     delete[] T;
 }
 
-void TablaHash::insertar (Cuac nuevo){
+Cuac *TablaHash::insertar (Cuac nuevo){
     
     if (nElem > 2*M)            // Vemos si hace falta reestructurar (hay el doble de elementos que el tamaño de la tabla)
 	{
@@ -85,6 +84,13 @@ void TablaHash::insertar (Cuac nuevo){
 
                     lista_cuacs.insert(itCuac, nuevo);          // Si es así, se inserta
                     insertado = true;                           // y se marca la condición de insertado
+                    /*
+                    
+
+                    PASÁRSELO AL ÁRBOL AQUÍ SUPONGO
+
+                    
+                    */
                 }
                 else itCuac++;                                  // Si no, simplemente seguimos
             }

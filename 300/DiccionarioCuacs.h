@@ -3,6 +3,10 @@
 
 #include "TablaHash.h"
 #include "Arbol.h"
+#include "Cuac.h"
+#include <iostream>
+
+using namespace std;
 
 class DiccionarioCuacs {
      private:

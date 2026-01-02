@@ -1,5 +1,8 @@
 #include <iostream>
 #include "DiccionarioCuacs.h"
+#include "Cuac.h"
+
+using namespace std;
 
 int contador = 0;
 

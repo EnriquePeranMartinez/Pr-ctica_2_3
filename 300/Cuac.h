@@ -2,6 +2,8 @@
 #define CUAC_H
 
 #include "Fecha.h"
+#include <iostream>
+using namespace std;
 
 #define NUMERO_FRASES 30
 extern const string frases[NUMERO_FRASES];

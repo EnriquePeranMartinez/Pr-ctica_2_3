@@ -1,9 +1,11 @@
 #ifndef PAR_H
 #define PAR_H
 
-#include <string>
+#include <iostream>
 #include <list>
 #include "Cuac.h"
+
+using namespace std;
 
 class Par{
    private:

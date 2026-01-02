@@ -2,7 +2,7 @@
 #define FECHA_H
 
 #include <iostream>
-using namespace std;    // No necesitamos usar std::, ni en Cuac.h ni en interprete.cpp
+using namespace std;
 
 class Fecha {
 	private:

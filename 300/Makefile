@@ -4,7 +4,7 @@ a.out: DiccionarioCuacs.o Fecha.o Cuac.o interprete.o TablaHash.o Par.o
 interprete.o: interprete.cpp DiccionarioCuacs.h
 	g++ -c interprete.cpp
 
-DiccionarioCuacs.o: DiccionarioCuacs.cpp DiccionarioCuacs.h TablaHash.h
+DiccionarioCuacs.o: DiccionarioCuacs.cpp DiccionarioCuacs.h TablaHash.h Arbol.h Fecha.h
 	g++ -c DiccionarioCuacs.cpp
 
 TablaHash.o: TablaHash.cpp TablaHash.h Cuac.h Par.h
