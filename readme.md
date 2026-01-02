@@ -93,7 +93,7 @@ Creo que solo hace falta reservar memoria para el array de listas de pares, porq
 
 El constructor para `DiccionarioCuacs` **no hace falta** porque no inicializa nada, usa la TablaHash.
 
-Creamos 
+Creamos la tabla con tamaño inicial 50000 de forma un poco intuitiva, ya que el archivo de entrada grande tiene unas 100000 líneas, y lo podemos tomar como una cota inferior.
 
 ### insertar tabla hash
 
