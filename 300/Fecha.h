@@ -21,7 +21,7 @@ class Fecha {
 		// Funcionalidad
 		void leer();
 		void escribir();
-		bool es_menor(Fecha &otra);
+		bool es_menor(Fecha &otra);	// Menor significa que es más reciente
 		bool es_igual(Fecha &otra);
 };
 

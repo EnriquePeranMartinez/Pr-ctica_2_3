@@ -1,7 +1,7 @@
 #ifndef TABLAHASH_H
 #define TABLAHASH_H
 
-//#include "Cuac.h"
+#include "Cuac.h"
 #include "Par.h"
 #include <iostream>
 #include <list>

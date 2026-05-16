@@ -2,6 +2,7 @@ token
 a.out
 a.exe
 *.pptx
+entrada
 salida
 .~*
 *.o

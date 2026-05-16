@@ -11,10 +11,11 @@ Creamos otro objeto fecha, no podemos hacer directamente `es_menor(otro.getFecha
 
 Al principio escribimos este código para `es_anterior`. Luego le preguntamos a Gemini si era eficiente, y nos dio una solución más eficiente y legible (Gemini 3.0).
 
-```bool Cuac::es_anterior(Cuac &otro)
+```c++
+bool Cuac::es_anterior(Cuac &otro)
 {
-	Fecha otra = otro.getFecha();	// Creamos otro objeto fecha, no podemos hacer directamente es_menor(otro.getFecha()) porque el valor se pierde en la misma línea de código al no ser una variable real.
-	if(fecha.es_menor(otra)){	// La fecha es anterior -> el cuac es anterior
+	Fecha otra = otro.getFecha(); // Creamos otro objeto fecha, no podemos hacer directamente es_menor(otro.getFecha()) porque el valor se pierde en la misma línea de código al no ser una variable real.
+	if(fecha.es_menor(otra)){ // La fecha es anterior -> el cuac es anterior
 		return true;
 	}
 	
@@ -68,8 +69,10 @@ i++ va primero. Si se pone al final, siempre añadirá un cuac de más al total,
 
 ### En date
 Creo que el segundo while vuelve a hacer los mismos  
-	```cuac = *itLista;
-	fecha = cuac.getFecha();```
+```c++
+cuac = *itLista;
+fecha = cuac.getFecha();
+```
 que el while anterior, pero bueno creo que funciona bien. 
 
 
@@ -80,7 +83,7 @@ De momento, reestructurar se llamará cuando el número de elementos sea el dobl
 Creo que la mejor forma de almacenar los cuacs es almacenando en cada elemento del array
 el nombre de usuario y un puntero a una lista con sus Cuacs. De esta manera, cuando se busquen los Cuacs de un usuario en
 concreto, solo tiene que buscar el nombre mediante la función de dispersión, y luego buscar en la lista.
-**¿Esto tiene problemas?** -> Si tengo pocos usuarios se me van a llenar mucho las cubetas. PASA LO MISMO DE LA OTRA MANERA
+**¿Esto tiene problemas?** $\to$ Si tengo pocos usuarios se me van a llenar mucho las cubetas. PASA LO MISMO DE LA OTRA MANERA.
 NO VA A HABER POCOS USUARIOS
 
 Vamos a crear la clase Par que contiene el nombre de usuario y la lista con los cuacs del usuario.
@@ -120,7 +123,7 @@ Muy similar a insertar
 !! TODO: Cambiar variable i para "Total: i cuacs" por contador en ejercicios anteriores !!
 aunque igual no hace falta, solo cuenta realmente el proyecto final
 
-## Pruebas tamaño tabla y funciones de dispersión
+### Pruebas tamaño tabla y funciones de dispersión
 Tamaño fijo
 
 
@@ -128,15 +131,25 @@ Tamaño fijo
 
 ## 300 (Árbol)
 
-Al final de insertar() de TablaHash.cpp, devolvemos la referencia del cuac insertado 
+Al final de insertar() de TablaHash.cpp, devolvemos la referencia del cuac insertado, pero no puede ser el del parámetro, que ese es de ámbito local $\to$ devolveríamos un puntero a basura. 
  !!! ¿Hay que disminuir el it como en las diapositivas?
 
 
+### Docu
+Hemos decidido no hacerlo con nodos Trie, ya que no consideramos que haya demasiados prefijos comunes.
+Por otro lado, un árbol B podría ser una opción, pero creemos que puede ser excesivo, tanto como por su complejidad como su propósito práctico, ya que estamos utilizando memoria principal y no necesitamos optimizar al máximo los accesos a una posible memoria secundaria.
+Por todo lo anterior, un AVL nos dará un equilibrio entre rendimiento tanto en memoria como en tiempo de ejecución, ya que tiene on O(log n) en el peor caso de todas sus operaciones, y una implementación relativamente sencilla.
+
+Vamos a implementar un AVL de punteros a cuacs directamente, ya que del otro modo, con listas, sería perder más tiempo ordenándolas también al insertar un elemento. Además, no consideramos que vaya a haber demasiadas fechas iguales, con lo que no se aprovecharía demasiado esta estructura.
+
+Las rotaciones ĺas hará el árbol y le pedirá al nodo los datos que necesite. 
 
 
 
+# Sesiones de trabajo
+
+ 2/1/2026 -- 11~13, 15~18, 19:30~21:30
+ 4/1/2026 -- 15~
 
 
- # Sesiones de trabajo
-
- 2/1/2026 -- 11~13
+ 15/5/2026 -- 16:30~17
