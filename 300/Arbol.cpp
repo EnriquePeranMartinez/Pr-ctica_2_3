@@ -4,6 +4,10 @@ Arbol::Arbol (){
     raiz = NULL;
 }
 
+Arbol::~Arbol(){
+    delete raiz;
+}
+
 int Arbol::getAlturaNodo(Nodo *n){      // Función auxilixar para manejar cuando el nodo sea NULL
     if (n == NULL){
         return -1;
@@ -13,34 +17,71 @@ int Arbol::getAlturaNodo(Nodo *n){      // Función auxilixar para manejar cuand
     }
 }
 
-
-void Arbol::insertar (Cuac *ref){
-    if (raiz == NULL)           // Si el árbol está vacío
+void Arbol::insertar (Nodo *&A, Cuac *x){      // A será el nodo en el que insertar y x el Cuac a insertar
+    if (A == NULL)           // Si el nodo no existea aún
     {
         Nodo *nuevo = new Nodo();   // Creamos un nuevo nodo e inicializamos todos sus valores
-        nuevo->setCuac(ref);
-        nuevo->setIzq(NULL);
-        nuevo->setDer(NULL);
-        nuevo->setAltura(0);
+        nuevo->setCuac(x); 
+        A = nuevo;
     }
-    else {
-        Cuac r = raiz->getCuac();
-        if (ref->es_anterior(r));
+    else if (x->es_anterior(*A->getCuac()))   // Si el que se va a insertar es anterior. 
+    {   // Subárbol izquierdo
+        insertar(A->getIzq(), x); // Metemos recursivamente el hijo en el subárbol izquierdo
+        if ((getAlturaNodo(A->getIzq()) - getAlturaNodo(A->getDer())) > 1)
         {
-            /* code */
+            if (x->es_anterior(*A->getIzq()->getCuac())) RSI(A);    // Caso II(A)
+            else RDI(A);    // Caso ID(A)
+        } else {
+            A->setAltura(1+ max(getAlturaNodo(A->getIzq()), getAlturaNodo(A->getDer())));
         }
-        
     }
-    
-
+    else // Subárbol derecho: Si el que se va a insertar no es anterior.
+    {   
+        insertar(A->getDer(), x); // Metemos recursivamente el hijo en el subárbol derecho
+        if ((getAlturaNodo(A->getDer()) - getAlturaNodo(A->getIzq())) > 1)
+        {
+            if (!(x->es_anterior(*A->getDer()->getCuac()))) RSD(A);    // Caso DD(A)
+            else RDD(A);    // Caso DI(A)
+        } else {
+            A->setAltura(1+ max(getAlturaNodo(A->getIzq()), getAlturaNodo(A->getDer())));
+        }
+    }
 }
 
 void Arbol::last (int N){
+    list<Nodo*> pila_cuacs;    // Pila para mantener el orden de los cuacs 
+    Nodo *actual = raiz;
+    int contador = 0;
 
+    while (actual != NULL || !pila_cuacs.empty())   // Mientras haya nodos OR no hayamos imprimido todos 
+    {                                                                // AND no nos hayamos pasado de los N que hay que imprimir
+       while (actual != NULL)
+       {
+            pila_cuacs.push_back(actual);
+            actual = actual->getIzq();              // Bajamos todo lo que podamos a la izquierda (los más recientes)
+       }
+
+       actual = pila_cuacs.back();      // Volvemos del NULL al último de la pila
+       pila_cuacs.pop_back();       // Lo sacamos
+
+       if (contador >= N)   // Ponemos la condición de no habernos pasado aquí, porque de otro modo podríamos imprimir de más
+       {
+        break;
+       }
+
+       contador++;
+       cout << contador << ". ";
+       actual->getCuac()->escribir();   // Escribimos el Cuac de actual
+       cout << endl;
+
+       actual = actual->getDer();   // Ahora al derecho y repetimos operación
+    }
+    cout << "Total: " << contador << " cuac" << endl;
 }
 
-void Arbol::date (Fecha f1, Fecha f2){
 
+void Arbol::date (Fecha f1, Fecha f2){
+    return;
 }
 
 // Rotaciones

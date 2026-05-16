@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int contador = 0;
+//int contador = 0;
 
 DiccionarioCuacs dic;   // Declaramos el diccionario aquí
 

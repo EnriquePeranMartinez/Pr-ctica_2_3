@@ -10,6 +10,7 @@ Cambiamos `numero_a_frase` para que devuelva un string en vez de imprimirlo dire
 Creamos otro objeto fecha, no podemos hacer directamente `es_menor(otro.getFecha())` porque el valor se pierde en la misma línea de código al no ser una variable real. (Gemini 3.0)
 
 Al principio escribimos este código para `es_anterior`. Luego le preguntamos a Gemini si era eficiente, y nos dio una solución más eficiente y legible (Gemini 3.0).
+Que sea **anterior** significa que es más **reciente**.
 
 ```c++
 bool Cuac::es_anterior(Cuac &otro)
@@ -134,6 +135,15 @@ Tamaño fijo
 Al final de insertar() de TablaHash.cpp, devolvemos la referencia del cuac insertado, pero no puede ser el del parámetro, que ese es de ámbito local $\to$ devolveríamos un puntero a basura. 
  !!! ¿Hay que disminuir el it como en las diapositivas?
 
+TODO: mirar lo de reestructurar, con `list<Cuac> *T` había problemas porque el árbol se quedaría apuntando a nodos antiguos, pero como 
+
+### insertar
+Por la lógica de `es_anterior`, los más recientes irán a la izquierda y los más antiguos a la derecha.
+
+### last
+Vamos guardando en una pila los Cuacs que nos vayamos encontrando, para así imprimirlos en orden. Primero bajamos todo lo que podamos a la izquierda, que son los más recientes. Desapilamos el último para imprimirlo y vemos si tiene hemano derecho. Si es así, volvemos a bajar al de la izquierda del todo desde ese hermano derecho, y así hasta imprimir el número que nos hayan pedido o todo el árbol.
+
+Al poner la condición de no pasarse de N en la comprobación del `while`, a veces imprimía Cuacs de más, lo que es lógico, ya que no se volvía a comprobar hasta que acababa la iteración y seguía aumentando el contador.
 
 ### Docu
 Hemos decidido no hacerlo con nodos Trie, ya que no consideramos que haya demasiados prefijos comunes.
@@ -142,8 +152,7 @@ Por todo lo anterior, un AVL nos dará un equilibrio entre rendimiento tanto en 
 
 Vamos a implementar un AVL de punteros a cuacs directamente, ya que del otro modo, con listas, sería perder más tiempo ordenándolas también al insertar un elemento. Además, no consideramos que vaya a haber demasiadas fechas iguales, con lo que no se aprovecharía demasiado esta estructura.
 
-Las rotaciones ĺas hará el árbol y le pedirá al nodo los datos que necesite. 
-
+Las rotaciones las hará el árbol y le pedirá al nodo los datos que necesite. 
 
 
 # Sesiones de trabajo
@@ -153,3 +162,6 @@ Las rotaciones ĺas hará el árbol y le pedirá al nodo los datos que necesite.
 
 
  15/5/2026 -- 16:30~17
+ 16/5/2026 -- 12-13, 20:30-22
+
+ 

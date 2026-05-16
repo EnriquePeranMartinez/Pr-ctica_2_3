@@ -7,3 +7,8 @@ Nodo::Nodo () {
     izq = NULL;
     der = NULL;
 }
+
+Nodo::~Nodo(){ 
+    delete izq;
+    delete der;
+}
