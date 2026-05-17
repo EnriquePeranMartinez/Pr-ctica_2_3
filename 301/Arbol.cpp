@@ -81,19 +81,45 @@ void Arbol::last (int N){
 
 
 void Arbol::date (Fecha f1, Fecha f2){ // f1 límite inferior, f2 límite superior
-    list<NodoAVL*> pila_cuacs;      // Misma idea que con last
+    list<NodoAVL*> pila_cuacs;    // Pila para mantener el orden de los cuacs 
     NodoAVL *actual = raiz;
     int contador = 0;
+    Fecha f_actual;
 
-    while (actual != NULL || !pila_cuacs.empty())
+    while (actual != NULL || !pila_cuacs.empty())   // Mientras exista el nodo OR no hayamos imprimido todos 
     {
-        while (actual != NULL)
+       while (actual != NULL) // Bucle para encontrar
         {
-            /* code */
+            f_actual = actual->getCuac()->getFecha();
+            if (f2.es_menor(f_actual))  // Se pasa de reciente,
+            {
+                actual = actual->getDer(); // entonces nos vamos a la derecha (más antiguos)
+            } else {
+                pila_cuacs.push_back(actual); // Si no, a la pila y seguimos bajando a la izquierda (más recientes)
+                actual = actual->getIzq();
+            }
+        }
+
+        if (pila_cuacs.empty()) { break; } // La pila estará vacía si no hemos encontrado cuacs en el rango
+        
+        actual = pila_cuacs.back();      // Volvemos del NULL al último de la pila
+        pila_cuacs.pop_back();       // Lo sacamos
+
+        f_actual = actual->getCuac()->getFecha();
+        
+        if (f_actual.es_menor(f1))
+        {
+            actual = NULL;  //
+        } else {
+            contador++;
+            cout << contador << ". ";
+            actual->getCuac()->escribir();   // Escribimos el Cuac de actual
+            cout << endl;
+            actual = actual->getDer();   // Ahora al derecho y repetimos operación
         }
         
     }
-    
+    cout << "Total: " << contador << " cuac" << endl;
 }
 
 // Rotaciones

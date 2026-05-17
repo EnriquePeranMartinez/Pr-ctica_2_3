@@ -145,6 +145,9 @@ Vamos guardando en una pila los Cuacs que nos vayamos encontrando, para así imp
 
 Al poner la condición de no pasarse de N en la comprobación del `while`, a veces imprimía Cuacs de más, lo que es lógico, ya que no se volvía a comprobar hasta que acababa la iteración y seguía aumentando el contador.
 
+### date
+
+
 ### Docu
 Hemos decidido no hacerlo con nodos Trie, ya que no consideramos que haya demasiados prefijos comunes.
 Por otro lado, un árbol B podría ser una opción, pero creemos que puede ser excesivo, tanto como por su complejidad como su propósito práctico, ya que estamos utilizando memoria principal y no necesitamos optimizar al máximo los accesos a una posible memoria secundaria.
@@ -166,4 +169,5 @@ Las rotaciones las hará el árbol y le pedirá al nodo los datos que necesite.
  15/5/2026 -- 16:30~17
  16/5/2026 -- 12-13, 20:30-23
 
- 
+301
+ 17/5/2026 -- 12-14
