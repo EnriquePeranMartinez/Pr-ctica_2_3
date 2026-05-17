@@ -39,8 +39,6 @@ bool Cuac::es_anterior(Cuac &otro)
 }
 ``` 
 
-
-
 ## 005.cpp (Intérprete de comandos)
 
 `Cuac actual;`	// Lo definimos después de la clase Cuac.

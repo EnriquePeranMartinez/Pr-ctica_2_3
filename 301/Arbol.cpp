@@ -88,7 +88,7 @@ void Arbol::date (Fecha f1, Fecha f2){ // f1 límite inferior, f2 límite superi
 
     while (actual != NULL || !pila_cuacs.empty())   // Mientras exista el nodo OR no hayamos imprimido todos 
     {
-       while (actual != NULL) // Bucle para encontrar
+       while (actual != NULL) // Bucle para encontrar los más recientes que estén en el rango (bajamos por la izquierda)
         {
             f_actual = actual->getCuac()->getFecha();
             if (f2.es_menor(f_actual))  // Se pasa de reciente,
@@ -101,15 +101,15 @@ void Arbol::date (Fecha f1, Fecha f2){ // f1 límite inferior, f2 límite superi
         }
 
         if (pila_cuacs.empty()) { break; } // La pila estará vacía si no hemos encontrado cuacs en el rango
-        
-        actual = pila_cuacs.back();      // Volvemos del NULL al último de la pila
+                                            // Evitamos la violación de segmento de pila_cuacs.back()
+        actual = pila_cuacs.back();      // Cogemos el último de la pila, el más reciente que no se pasa de f2
         pila_cuacs.pop_back();       // Lo sacamos
 
         f_actual = actual->getCuac()->getFecha();
         
-        if (f_actual.es_menor(f1))
+        if (f_actual.es_menor(f1)) // Ahora vamos a ver si no se pasa de antiguo
         {
-            actual = NULL;  //
+            actual = NULL;  // Lo descartamos
         } else {
             contador++;
             cout << contador << ". ";
