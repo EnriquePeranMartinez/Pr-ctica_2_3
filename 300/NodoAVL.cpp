@@ -1,14 +1,14 @@
-#include "Nodo.h"
+#include "NodoAVL.h"
 
 
-Nodo::Nodo () {
+NodoAVL::NodoAVL () {
     altura = 0;
     cuac = NULL;
     izq = NULL;
     der = NULL;
 }
 
-Nodo::~Nodo(){ 
+NodoAVL::~NodoAVL(){ 
     delete izq;
     delete der;
 }

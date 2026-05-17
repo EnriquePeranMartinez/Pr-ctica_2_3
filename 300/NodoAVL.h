@@ -1,5 +1,5 @@
-#ifndef NODO_H
-#define NODO_H
+#ifndef NODOAVL_H
+#define NODOAVL_H
 
 #include "Fecha.h"
 #include "Cuac.h"
@@ -7,26 +7,26 @@
 
 using namespace std;
 
-class Nodo {
+class NodoAVL {
    private:
       int altura;
       Cuac *cuac;    
-      Nodo *izq;
-      Nodo *der;
+      NodoAVL *izq;
+      NodoAVL *der;
 
    public:
-      Nodo ();
-      ~Nodo ();
+      NodoAVL ();
+      ~NodoAVL ();
 
       // Getters
-      Nodo *&getIzq() {return izq;}
-      Nodo *&getDer() {return der;}
+      NodoAVL *&getIzq() {return izq;}
+      NodoAVL *&getDer() {return der;}
       int getAltura() {return altura;}
       Cuac *getCuac() {return cuac;}
 
       // Setters
-      void setIzq(Nodo *nuevoizq) {izq = nuevoizq;}
-      void setDer(Nodo *nuevoder) {der = nuevoder;}
+      void setIzq(NodoAVL *nuevoizq) {izq = nuevoizq;}
+      void setDer(NodoAVL *nuevoder) {der = nuevoder;}
       void setAltura(int nuevaAltura) {altura = nuevaAltura;}
       void setCuac(Cuac* nuevo) {cuac = nuevo;}
 };

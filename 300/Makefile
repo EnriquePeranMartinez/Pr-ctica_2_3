@@ -1,5 +1,5 @@
-a.out: DiccionarioCuacs.o Fecha.o Cuac.o interprete.o TablaHash.o Par.o Arbol.o Nodo.o
-	g++ -Wall DiccionarioCuacs.o Fecha.o Cuac.o interprete.o TablaHash.o Par.o Arbol.o Nodo.o 
+a.out: DiccionarioCuacs.o Fecha.o Cuac.o interprete.o TablaHash.o Par.o Arbol.o NodoAVL.o
+	g++ -Wall DiccionarioCuacs.o Fecha.o Cuac.o interprete.o TablaHash.o Par.o Arbol.o NodoAVL.o 
 
 interprete.o: interprete.cpp DiccionarioCuacs.h
 	g++ -c interprete.cpp
@@ -19,8 +19,8 @@ Cuac.o: Cuac.cpp Cuac.h Fecha.h
 Fecha.o: Fecha.cpp Fecha.h
 	g++ -c Fecha.cpp
 
-Arbol.o: Arbol.cpp Arbol.h Nodo.h Cuac.h Fecha.h
+Arbol.o: Arbol.cpp Arbol.h NodoAVL.h Cuac.h Fecha.h
 	g++ -c Arbol.cpp
 
-Nodo.o: Nodo.cpp Nodo.h Cuac.h Fecha.h
-	g++ -c Nodo.cpp
+NodoAVL.o: NodoAVL.cpp NodoAVL.h Cuac.h Fecha.h
+	g++ -c NodoAVL.cpp

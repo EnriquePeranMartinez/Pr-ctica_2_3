@@ -14,7 +14,7 @@ class DiccionarioCuacs {
           Arbol arbol;
      public:
      void insertar (Cuac nuevo)
-          {    Cuac *ref= tabla.insertar(nuevo);
+          {    Cuac *ref = tabla.insertar(nuevo);
                arbol.insertar(arbol.getRaiz(), ref); }
      void follow (string nombre)
           { tabla.consultar(nombre); }

@@ -8,7 +8,7 @@ Arbol::~Arbol(){
     delete raiz;
 }
 
-int Arbol::getAlturaNodo(Nodo *n){      // Función auxilixar para manejar cuando el nodo sea NULL
+int Arbol::getAlturaNodo(NodoAVL *n){      // Función auxilixar para manejar cuando el nodo sea NULL
     if (n == NULL){
         return -1;
     }
@@ -17,10 +17,10 @@ int Arbol::getAlturaNodo(Nodo *n){      // Función auxilixar para manejar cuand
     }
 }
 
-void Arbol::insertar (Nodo *&A, Cuac *x){      // A será el nodo en el que insertar y x el Cuac a insertar
+void Arbol::insertar (NodoAVL *&A, Cuac *x){      // A será el nodo en el que insertar y x el Cuac a insertar
     if (A == NULL)           // Si el nodo no existea aún
     {
-        Nodo *nuevo = new Nodo();   // Creamos un nuevo nodo e inicializamos todos sus valores
+        NodoAVL *nuevo = new NodoAVL();   // Creamos un nuevo nodo e inicializamos todos sus valores
         nuevo->setCuac(x); 
         A = nuevo;
     }
@@ -49,8 +49,8 @@ void Arbol::insertar (Nodo *&A, Cuac *x){      // A será el nodo en el que inse
 }
 
 void Arbol::last (int N){
-    list<Nodo*> pila_cuacs;    // Pila para mantener el orden de los cuacs 
-    Nodo *actual = raiz;
+    list<NodoAVL*> pila_cuacs;    // Pila para mantener el orden de los cuacs 
+    NodoAVL *actual = raiz;
     int contador = 0;
 
     while (actual != NULL || !pila_cuacs.empty())   // Mientras haya nodos OR no hayamos imprimido todos 
@@ -86,8 +86,8 @@ void Arbol::date (Fecha f1, Fecha f2){
 
 // Rotaciones
 
-void Arbol::RSI(Nodo *&A){
-    Nodo *B = A->getIzq();
+void Arbol::RSI(NodoAVL *&A){
+    NodoAVL *B = A->getIzq();
     A->setIzq(B->getDer());
     B->setDer(A);
     A->setAltura(1 + max(getAlturaNodo(A->getIzq()),  
@@ -98,8 +98,8 @@ void Arbol::RSI(Nodo *&A){
 }
 
 
-void Arbol::RSD(Nodo *&A){
-    Nodo *B = A->getDer();
+void Arbol::RSD(NodoAVL *&A){
+    NodoAVL *B = A->getDer();
     A->setDer(B->getIzq());
     B->setIzq(A);
     A->setAltura(1 + max(getAlturaNodo(A->getDer()),  
@@ -109,15 +109,15 @@ void Arbol::RSD(Nodo *&A){
     A = B;
 }
 
-void Arbol::RDI(Nodo *&A){
-    Nodo *A_izq = A->getIzq();      // De nuevo, el valor A->getIzq() se perdería en la misma línea de código de RSD()
+void Arbol::RDI(NodoAVL *&A){
+    NodoAVL *A_izq = A->getIzq();      // De nuevo, el valor A->getIzq() se perdería en la misma línea de código de RSD()
     RSD(A_izq);                 // Esto es una copia de la dirección del nodo izquierdo
     A->setIzq(A_izq);           // Entonces volvemos a asignar el nodo inmediatamente después
     RSI(A);
 }
 
-void Arbol::RDD(Nodo *&A){
-    Nodo *A_der = A->getDer();      // De nuevo, el valor A->getDer() se perdería en la misma línea de código de RSI()
+void Arbol::RDD(NodoAVL *&A){
+    NodoAVL *A_der = A->getDer();      // De nuevo, el valor A->getDer() se perdería en la misma línea de código de RSI()
     RSI(A_der);                 // Esto es una copia de la dirección del nodo derecho
     A->setDer(A_der);           // Entonces volvemos a asignar el nodo inmediatamente después
     RSD(A);                     

@@ -3,30 +3,30 @@
 
 #include "Fecha.h"
 #include "Cuac.h"
-#include "Nodo.h"
+#include "NodoAVL.h"
 #include <iostream>
 #include <list>
 
 class Arbol {
   private:
-    Nodo *raiz;
-    int getAlturaNodo(Nodo *n); // Función auxiliar para manejar cuando el nodo sea NULL
+    NodoAVL *raiz;
+    int getAlturaNodo(NodoAVL *n); // Función auxiliar para manejar cuando el nodo sea NULL
     
   public:
      Arbol ();
      ~Arbol ();
-     void insertar (Nodo *&A, Cuac *x);
+     void insertar (NodoAVL *&A, Cuac *x);
      void last (int N);
      void date (Fecha f1, Fecha f2);
     
      // Rotaciones
-     void RSI(Nodo *&A);  
-     void RSD(Nodo *&A);
-     void RDI(Nodo *&A);
-     void RDD(Nodo *&A);
+     void RSI(NodoAVL *&A);  
+     void RSD(NodoAVL *&A);
+     void RDI(NodoAVL *&A);
+     void RDD(NodoAVL *&A);
 
      // Getters
-      Nodo *&getRaiz() {return raiz;}
+      NodoAVL *&getRaiz() {return raiz;}
 };
 
 
