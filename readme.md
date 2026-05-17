@@ -155,6 +155,8 @@ Vamos a implementar un AVL de punteros a cuacs directamente, ya que del otro mod
 Las rotaciones las hará el árbol y le pedirá al nodo los datos que necesite. 
 
 
+
+
 # Sesiones de trabajo
 
  2/1/2026 -- 11~13, 15~18, 19:30~21:30

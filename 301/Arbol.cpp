@@ -53,7 +53,7 @@ void Arbol::last (int N){
     NodoAVL *actual = raiz;
     int contador = 0;
 
-    while (actual != NULL || !pila_cuacs.empty())   // Mientras haya nodos OR no hayamos imprimido todos 
+    while (actual != NULL || !pila_cuacs.empty())   // Mientras exista el nodo OR no hayamos imprimido todos 
     {                                                                // AND no nos hayamos pasado de los N que hay que imprimir
        while (actual != NULL)
        {
@@ -80,8 +80,20 @@ void Arbol::last (int N){
 }
 
 
-void Arbol::date (Fecha f1, Fecha f2){
-    return;
+void Arbol::date (Fecha f1, Fecha f2){ // f1 límite inferior, f2 límite superior
+    list<NodoAVL*> pila_cuacs;      // Misma idea que con last
+    NodoAVL *actual = raiz;
+    int contador = 0;
+
+    while (actual != NULL || !pila_cuacs.empty())
+    {
+        while (actual != NULL)
+        {
+            /* code */
+        }
+        
+    }
+    
 }
 
 // Rotaciones
