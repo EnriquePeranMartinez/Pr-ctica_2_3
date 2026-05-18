@@ -8,10 +8,8 @@
 
 using namespace std;
 
-#define TAM_TABLA 50000
+#define TAM_TABLA 10000 
 #define PRIMO 11
-
-
 
 class TablaHash {
    private:

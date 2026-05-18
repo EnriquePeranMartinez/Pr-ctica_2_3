@@ -91,7 +91,7 @@ Vamos a crear la clase Par que contiene el nombre de usuario y la lista con los 
 He dividido insertar en insertar en el Par e insertar el Cuac en la lista de Cuacs del Par. PUEDE QUE LUEGO LO CAMBIE
 
 Sobre la memoria dinámica:
-Creo que solo hace falta reservar memoria para el array de listas de pares, porque lo demás (list<>) ya reservan automáticamente
+~~Creo que solo hace falta reservar memoria para el array de listas de pares, porque lo demás (list<>) ya reservan automáticamente~~
 
 El constructor para `DiccionarioCuacs` **no hace falta** porque no inicializa nada, usa la TablaHash.
 
@@ -105,7 +105,31 @@ Haremos un bucle para encontrar un par que sea el mismo usuario (o si no, añadi
 La inserción es similar a la del ejercicio anterior.
 
 ### reestructurar
-Como los datos de Par gestionan automáticamente su memoria dinámica, solo tenemos que hacer delete[] vieja para borrar la tabla antigua y asignar la nueva a T 
+Como los datos de Par gestionan automáticamente su memoria dinámica, solo tenemos que hacer delete[] vieja para borrar la tabla antigua y asignar la nueva a T $\to$ **ESTO DA PROBLEMAS**. 
+El programa funciona, pero hay errores en la memoria dinámica. 
+
+#### Solución 
+Haciendo uso del programa valgrind para comprobar el uso de la memoria dinámica, nos dimos cuenta de que la memoria se liberaba correctamente, daba el resultado correcto, pero aún así daba errores. Nos fijamos en que daba error justo cuando reestructuraba, con lo que analicé de nuevo la función `reestructurar`, pero no vi nada raro.
+
+Preguntando a Claude Sonnet 4.6, descubrimos que el problema estaba en que se quedaban punteros apuntando a memoria liberada, en concreto cuando se copiaban por valor en este bucle:
+```c++
+// BUCLE PARA RECORRER LAS CASILLAS DE LA TABLA
+for (int i = 0; i < antiguaM; i++)
+{
+	// BUCLE PARA RECORRER LA LISTA DE PARES
+	itPar = vieja[i].begin();      // Empezamos a iterar la lista de pares de la casilla i
+	while (itPar != vieja[i].end())
+	{
+		par_actual = *itPar;                             // Cogemos el par por valor
+		h = funcionDispersion(par_actual.getUsuario()); // Calculamos la nueva h
+		nueva[h].push_back(par_actual);                 // Metemos el par en la nueva tabla
+		itPar++;     
+	}
+}
+```
+Metiendo directamente par_actual en la tabla, que había sido copiado por valor, hacía que cambiara la dirección de memoria y que los punteros quedaran colgando. Claude me sugirió usar la función `std::move()`, para mover los pares en vez de copiarlos.
+Usando `move(*itPar)` para meter el par en la nueva tabla lo arreglabla, porque así no lo estamos pasando por valor, si no directamente moviendo el puntero a la nueva, evitando que haya problemas al destruir la tabla vieja. 
+Es por esto también que no habrá problemas con el árbol al reestructurar la tabla, ya que se garantiza que las direcciones no cambiarán.
 
 
 ### Función de dispersión
