@@ -3,15 +3,16 @@
 #include <cmath>
 
 unsigned int TablaHash::funcionDispersion(string usuario){
-    // SUMA POSICIONAL
-    unsigned int res = 0;
-    short int longitud = usuario.length();
-    for (int i = 0; i < longitud; i++)      // Suma posicional
-    {
-        //res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));   // Mala idea (diapositivas), res demasiado grande
-        res = (PRIMO + longitud) * res + usuario[i];
+    // MÉTODO DE PLEGADO (folding)
+    long sum = 0; 
+    long mul = 1;
+    for (int i = 0; i < usuario.length(); i++) {
+        mul = (i % 4 == 0) ? 1 : mul * 256;
+        sum += usuario[i] * mul;
     }
-    return res % M;    
+    return abs(sum) % M;
+
+
 }
 
 void TablaHash::reestructurar(){
@@ -36,7 +37,7 @@ void TablaHash::reestructurar(){
         }
     }
     
-    delete[] vieja;
+    delete[] vieja; // Corchetes porque 
     T = nueva;
 }
 
