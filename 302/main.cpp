@@ -4,8 +4,6 @@
 
 using namespace std;
 
-//int contador = 0;
-
 DiccionarioCuacs dic;   // Declaramos el diccionario aquí
 
 void procesar_pcuac(){

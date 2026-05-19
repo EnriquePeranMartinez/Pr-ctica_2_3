@@ -3,7 +3,6 @@
 
 #include "Fecha.h"
 #include "Cuac.h"
-#include <iostream>  
 
 using namespace std;
 

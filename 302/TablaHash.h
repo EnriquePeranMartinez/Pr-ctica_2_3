@@ -3,7 +3,6 @@
 
 #include "Cuac.h"
 #include "Par.h"
-#include <iostream>
 #include <list>
 
 using namespace std;

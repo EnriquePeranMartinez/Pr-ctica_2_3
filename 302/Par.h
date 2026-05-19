@@ -1,7 +1,6 @@
 #ifndef PAR_H
 #define PAR_H
 
-#include <iostream>
 #include <list>
 #include "Cuac.h"
 

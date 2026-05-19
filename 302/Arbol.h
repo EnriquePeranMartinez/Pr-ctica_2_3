@@ -4,7 +4,6 @@
 #include "Fecha.h"
 #include "Cuac.h"
 #include "NodoAVL.h"
-#include <iostream>
 #include <list>
 
 class Arbol {

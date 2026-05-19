@@ -95,7 +95,7 @@ Sobre la memoria dinámica:
 
 El constructor para `DiccionarioCuacs` **no hace falta** porque no inicializa nada, usa la TablaHash.
 
-Creamos la tabla con tamaño inicial 50000 de forma un poco intuitiva, ya que el archivo de entrada grande tiene unas 100000 líneas, y lo podemos tomar como una cota inferior.
+Creamos la tabla con tamaño inicial 10000 de forma un poco intuitiva, ya que el archivo de entrada grande hay unos 32000 cuacs
 
 ### insertar tabla hash
 
@@ -143,11 +143,23 @@ Probaremos primero con la suma posicional -> De momento no parece que saque valo
 
 Muy similar a insertar
 
-!! TODO: Cambiar variable i para "Total: i cuacs" por contador en ejercicios anteriores !!
-aunque igual no hace falta, solo cuenta realmente el proyecto final
-
 ### Pruebas tamaño tabla y funciones de dispersión
-Tamaño fijo
+
+#### Dispersión abierta
+**Tamaño variable**:
+*Con función de dispersión:*
+```c++
+    unsigned int res = 0;
+    short int longitud = usuario.length();
+    for (int i = 0; i < longitud; i++)      // Suma posicional
+    {
+        res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));
+    }
+    
+    return res % M;    
+```
+- 200a.in > salida $\to$ 209-250ms
+- 301a.in > salida $\to$ 97-111ms
 
 
 

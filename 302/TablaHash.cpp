@@ -9,11 +9,8 @@ unsigned int TablaHash::funcionDispersion(string usuario){
     {
         res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));
     }
-
-    //cout << "Dispersión: " << res % M << endl;
-    return res % M;
     
-    
+    return res % M;    
 }
 
 void TablaHash::reestructurar(){
