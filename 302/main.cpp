@@ -1,6 +1,7 @@
 #include <iostream>
 #include "DiccionarioCuacs.h"
 #include "Cuac.h"
+#include "Fecha.h"
 
 using namespace std;
 

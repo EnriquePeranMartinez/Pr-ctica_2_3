@@ -3,13 +3,14 @@
 #include <cmath>
 
 unsigned int TablaHash::funcionDispersion(string usuario){
+    // SUMA POSICIONAL
     unsigned int res = 0;
     short int longitud = usuario.length();
     for (int i = 0; i < longitud; i++)      // Suma posicional
     {
-        res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));
+        //res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));   // Mala idea (diapositivas), res demasiado grande
+        res = (PRIMO + longitud) * res + usuario[i];
     }
-    
     return res % M;    
 }
 

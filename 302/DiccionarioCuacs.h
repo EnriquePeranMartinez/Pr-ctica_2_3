@@ -4,6 +4,8 @@
 #include "TablaHash.h"
 #include "Arbol.h"
 #include "Cuac.h"
+#include "Fecha.h"
+#include <iostream>
 
 using namespace std;
 

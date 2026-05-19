@@ -147,29 +147,43 @@ Muy similar a insertar
 
 #### Dispersión abierta
 **Tamaño variable**:
-*Con función de dispersión:*
+*Con función de dispersión suma posicional:*
 ```c++
     unsigned int res = 0;
     short int longitud = usuario.length();
     for (int i = 0; i < longitud; i++)      // Suma posicional
     {
-        res = res + usuario[i] * pow(PRIMO,longitud - (i + 1));
+        res = (PRIMO + longitud) * res + usuario[i];
     }
-    
     return res % M;    
 ```
-- 200a.in > salida $\to$ 209-250ms
-- 301a.in > salida $\to$ 97-111ms
+Es rápida y parece que reparte bien los valores
+- 200 $\to$ ~250ms
+- 301 $\to$ ~111ms
 
+*Con función de dispersión de plegado*
+Sacada de esta página y adaptada, https://opendsa-server.cs.vt.edu/ODSA/Books/CS3/html/HashFuncExamp.html
+Ligeramente más compleja, pero también rápida y parece repartir bien.
+``` c++   
+    long sum = 0; 
+    long mul = 1;
+    for (int i = 0; i < usuario.length(); i++) {
+        mul = (i % 4 == 0) ? 1 : mul * 256;
+        sum += usuario[i] * mul;
+    }
+    return abs(sum) % M;
+```
 
+- 301 $\to$ ~100ms
+- 200 $\to$ ~220ms
+- 302 $\to$ ~200ms
 
 
 ## 300 (Árbol)
 
 Al final de insertar() de TablaHash.cpp, devolvemos la referencia del cuac insertado, pero no puede ser el del parámetro, que ese es de ámbito local $\to$ devolveríamos un puntero a basura. 
- !!! ¿Hay que disminuir el it como en las diapositivas?
 
-TODO: mirar lo de reestructurar, con `list<Cuac> *T` había problemas porque el árbol se quedaría apuntando a nodos antiguos, pero como 
+Con `list<Cuac> *T` había problemas porque el árbol se quedaría apuntando a nodos antiguos al reestructurar, pero como ahora la función `reestructurar` de la tabla mueve con `move()` los Cuacs, no hay problema. Mueve las referencias. 
 
 ### insertar
 Por la lógica de `es_anterior`, los más recientes irán a la izquierda y los más antiguos a la derecha.
@@ -205,3 +219,7 @@ Las rotaciones las hará el árbol y le pedirá al nodo los datos que necesite.
 
 301
  17/5/2026 -- 12-14
+
+302
+ 18/5/2026 -- 
+ 19/5/2026 -- 9-12

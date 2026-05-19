@@ -2,6 +2,7 @@
 #define PAR_H
 
 #include <list>
+#include <iostream>
 #include "Cuac.h"
 
 using namespace std;

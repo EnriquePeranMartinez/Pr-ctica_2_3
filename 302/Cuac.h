@@ -1,8 +1,8 @@
 #ifndef CUAC_H
 #define CUAC_H
 
-#include "Fecha.h"
 #include <iostream>
+#include "Fecha.h"
 using namespace std;
 
 #define NUMERO_FRASES 30
